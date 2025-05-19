@@ -7,9 +7,11 @@ const Page = () => {
   return (
     <main className="wrapper page">
       <Header subHeader={"Public Library"} title={"All Videos"} />
-      {dummyCards.map((card) => (
-        <VideoCard {...card} />
-      ))}
+      <section className="video-grid">
+        {dummyCards.map((card) => (
+          <VideoCard key={card.id} {...card} />
+        ))}
+      </section>
     </main>
   );
 };
