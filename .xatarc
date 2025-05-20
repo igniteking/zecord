@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Micheal-Khan-s-workspace-5pck4j.ap-southeast-2.xata.sh/db/zecord",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
