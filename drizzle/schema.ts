@@ -4,6 +4,7 @@ import {
   timestamp,
   boolean,
   integer,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -72,3 +73,20 @@ export const scheama = {
   session,
   verification,
 };
+
+export const videos = pgTable("videos", {
+  id: uuid("id").primaryKey().defaultRandom().unique(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  videoUrl: text("video_url").notNull(),
+  videoId: text("video_id").notNull(),
+  thumbnailUrl: text("thumbnail_url").notNull(),
+  visibility: text("visibility").$type<"public" | "private">().notNull(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  views: integer("views").notNull().default(0),
+  duration: integer("duration"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
